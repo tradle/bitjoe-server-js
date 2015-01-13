@@ -1,0 +1,37 @@
+{
+  "name": "bitjoe-server-js",
+  "version": "0.0.1",
+  "description": "tradle bitjoe component web server implemented in JS",
+  "main": "index.js",
+  "bin": {
+    "bitjoe-server": "./app.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tradle/bitjoe-server-js.git"
+  },
+  "dependencies": {
+    "body-parser": "^1.10.1",
+    "concat-stream": "^1.4.7",
+    "debug": "^2.1.1",
+    "express": "^4.10.7",
+    "tradle-utils": "^0.0.1",
+    "bitjoe-js": "^0.0.1",
+    "minimist": "^1.1.0"
+  },
+  "keywords": [
+    "bitcoin",
+    "blockchain",
+    "tradle",
+    "blockchain",
+    "dapp"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tradle/bitjoe-server-js/issues"
+  },
+  "homepage": "https://github.com/tradle/bitjoe-server-js"
+}
