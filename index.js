@@ -33,8 +33,8 @@ function createServer(bitjoe, port, callback) {
   // if (require.main === module) {
   //   // run directly, not as sub-app
   var server = app.listen(port, function() {
-    debug('Running on port ' + port);
-    callback(null, server);
+    console.log('Running on port ' + port);
+    if (callback) callback(null, server);
   });
 
   // }
@@ -65,7 +65,6 @@ function createServer(bitjoe, port, callback) {
   app.use(errorHandler);
 
   function errorHandler(err, req, res, next) {
-    debugger;
     if (res.finished) return;
 
     var code = err.status || 500;
@@ -80,8 +79,8 @@ function createServer(bitjoe, port, callback) {
 }
 
 process.on('uncaughtException', function(err) {
-  debug('Uncaught exception, caught in process catch-all', err.message);
-  debug(err.stack);
+  console.log('Uncaught exception, caught in process catch-all', err.message);
+  console.log(err.stack);
 });
 
 module.exports = {
