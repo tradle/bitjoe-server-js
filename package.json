@@ -7,8 +7,15 @@
     "bitjoe-server": "./app.js"
   },
   "scripts": {
+    "postinstall": "cp node_modules/tradle-style/.js* .",
+    "jsbeautify": "js-beautify -r **.js",
+    "jshint": "jshint --exclude-path=.gitignore **.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "pre-commit": [
+    "jsbeautify",
+    "jshint"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/tradle/bitjoe-server-js.git"
@@ -33,5 +40,12 @@
   "bugs": {
     "url": "https://github.com/tradle/bitjoe-server-js/issues"
   },
-  "homepage": "https://github.com/tradle/bitjoe-server-js"
+  "homepage": "https://github.com/tradle/bitjoe-server-js",
+  "devDependencies": {
+    "js-beautify": "latest",
+    "jshint": "latest",
+    "pre-commit": "0.0.11",
+    "tape": "^3.0.3",
+    "tradle-style": "latest"
+  }
 }

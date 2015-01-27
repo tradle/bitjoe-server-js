@@ -48,7 +48,7 @@ function createServer(bitjoe, port, callback) {
   });
 
   app.use(function onready(req, res, next) {
-    if (!bitjoe.isReady()) 
+    if (!bitjoe.ready()) 
       return bitjoe.on('ready', next);
     else 
       next();
