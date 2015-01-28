@@ -16,11 +16,11 @@ function createServer(bitjoe, port, callback) {
   if (bitjoe.isTestnet())
     app.set('json spaces', 2);
 
-  app.use(function (req, res, next) {
+  app.use(function(req, res, next) {
     var requestDomain = domain.create();
     requestDomain.add(req);
     requestDomain.add(res);
-    requestDomain.on('error', function (err) {
+    requestDomain.on('error', function(err) {
       debug('Uncaught error, processing in domain error handler', err);
       errorHandler(err, req, res);
     });
@@ -31,7 +31,7 @@ function createServer(bitjoe, port, callback) {
 
   // if (require.main === module) {
   //   // run directly, not as sub-app
-  var server = app.listen(port, function () {
+  var server = app.listen(port, function() {
     console.log('Running on port ' + port);
     if (callback) callback(null, server);
   });
@@ -40,7 +40,7 @@ function createServer(bitjoe, port, callback) {
   // else
   //   callback();
 
-  app.use(function (req, res, next) {
+  app.use(function(req, res, next) {
     if (req.hostname !== 'localhost' && req.hostname !== '127.0.0.1') throw common.httpError(400, 'Only local requests permitted');
 
     next();
@@ -77,7 +77,7 @@ function createServer(bitjoe, port, callback) {
   }
 }
 
-process.on('uncaughtException', function (err) {
+process.on('uncaughtException', function(err) {
   console.log('Uncaught exception, caught in process catch-all', err.message);
   console.log(err.stack);
 });

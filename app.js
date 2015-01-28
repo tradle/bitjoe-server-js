@@ -21,7 +21,7 @@ config = JSON.parse(config);
 var port = argv.port || require('./conf/config.json').port;
 
 var joe = new Joe(config);
-joe.on('ready', function () {
+joe.on('ready', function() {
   console.log('Bitjoe is ready, starting server...');
   server.create(joe, port);
 });

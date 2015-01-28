@@ -7,13 +7,13 @@
     "bitjoe-server": "./app.js"
   },
   "scripts": {
-    "postinstall": "cp node_modules/tradle-style/.js* .",
-    "jsbeautify": "js-beautify -r **.js",
-    "jshint": "jshint --exclude-path=.gitignore **.js",
+    "jsbeautify": "js-beautify -r {*.js,**/*.js} --config=node_modules/tradle-style/.jsbeautifyrc",
+    "jshint": "jshint {*.js,**/*.js} --exclude-path=.gitignore --config=node_modules/tradle-style/.jshintrc",
+    "jscs": "jscs {*.js,**/*.js} --config=node_modules/tradle-style/.jscsrc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "pre-commit": [
-    "jsbeautify",
+    "jscs",
     "jshint"
   ],
   "repository": {
