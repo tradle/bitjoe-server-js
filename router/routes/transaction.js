@@ -29,7 +29,9 @@ router.put('/', function(req, res) {
       .then(function(resp) {
         res.status(200).json(resp);
       })
-      .done();
+      .catch(function(err) {
+        throw err;
+      })
 
   }));
 });

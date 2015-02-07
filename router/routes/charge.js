@@ -17,13 +17,15 @@ router.post('/', function(req, res) {
   joe.withdrawFromFaucet(value)
     .then(joe.sync)
     .then(function () {
-      debugger;
       debug('Charged', value);
       
       res.status(200).json({
         charged: value
       });
-    });
+    })
+    .catch(function(err) {
+      throw err;
+    })
 });
 
 module.exports = router;
