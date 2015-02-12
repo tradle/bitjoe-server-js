@@ -21,13 +21,10 @@ router.post('/', function(req, res) {
   if (typeof tail !== 'undefined') txs = txs.slice(0, Number(tail)); // first ones occurred last
 
   joe.loadData(txs)
-    .then(function(files) {
+    .done(function(files) {
       debug(JSON.stringify(files, null, 2)); // pretty print
       res.status(200).end();
-    })
-    .catch(function(err) {
-      throw err;
-    })
+    });
 });
 
 module.exports = router;

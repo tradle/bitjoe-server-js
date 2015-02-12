@@ -15,7 +15,7 @@ router.put('/', function(req, res) {
     try {
       data = JSON.parse(buf.toString());
     } catch (err) {
-      throw common.httpError(400, 'data must be valid JSON');      
+      throw common.httpError(400, 'data must be valid JSON');
     }
 
     var tReq = joe.transaction().data(data);
@@ -23,15 +23,12 @@ router.put('/', function(req, res) {
 
     if ('to' in params) tReq.recipients(params.to.split(','));
     if ('public' in params) tReq.setPublic(common.isTruthy(params['public']));
-    if ('cleartext' in params) tReq.cleartext(common.isTruthy(params.cleartext)); 
+    if ('cleartext' in params) tReq.cleartext(common.isTruthy(params.cleartext));
 
     tReq.execute()
-      .then(function(resp) {
+      .done(function(resp) {
         res.status(200).json(resp);
-      })
-      .catch(function(err) {
-        throw err;
-      })
+      });
 
   }));
 });
