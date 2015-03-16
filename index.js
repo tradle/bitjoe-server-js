@@ -66,14 +66,21 @@ function createServer(bitjoe, port, callback) {
   function errorHandler(err, req, res, next) {
     if (res.finished) return;
 
-    var code = err.status || 500;
-    var msg = 'status' in err ? err.message : 'There was an error with your request. Please contact support@tradle.io';
+    var msg;
+    var code;
+    if ('code' in err) {
+      code = err.code;
+      msg = err.message;
+    }
+    else {
+      code = 500;
+      msg = 'There was an error with your request. Please contact support@tradle.io';
+    }
 
-    // log('Error:' + err.message);
-    res.status(code).json({
+    return res.status(code).json({
       code: code,
       message: msg
-    }, null, 2);
+    }, null, 2); // pretty print
   }
 }
 

@@ -3,7 +3,7 @@
 var Joe = require('bitjoe-js');
 var server = require('./');
 var minimist = require('minimist');
-var argv = minimist(process.argv);
+var argv = minimist(process.argv.slice(2));
 var conf = require('./conf/config');
 
 var port = argv.port || conf.port;
