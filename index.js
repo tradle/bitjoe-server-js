@@ -41,7 +41,9 @@ function createServer(bitjoe, port, callback) {
   //   callback();
 
   app.use(function(req, res, next) {
-    if (req.hostname !== 'localhost' && req.hostname !== '127.0.0.1') throw common.httpError(400, 'Only local requests permitted');
+    if (req.hostname !== 'localhost' && req.hostname !== '127.0.0.1') {
+      throw common.httpError(400, 'Request from ' + req.hostname + ' ignored. Only local requests permitted');
+    }
 
     next();
   });
