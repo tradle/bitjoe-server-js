@@ -19,9 +19,11 @@ var serverConf = {
 
 if (argv.docker) {
   var host = process.env.DOCKER_HOST;
+  console.log('Adding docker host to ip whitelist: ' + host);
   if (host) {
     host = url.parse(host);
     serverConf.ipWhitelist.push(host.hostname);
+    console.log('IP whitelist: ' + JSON.stringify(serverConf.ipWhitelist, null, 2));
   }
 }
 
