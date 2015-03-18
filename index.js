@@ -48,7 +48,7 @@ function createServer(conf, callback) {
   //   callback();
 
   app.use(function(req, res, next) {
-    if (ipWhitelist.indexOf(req.hostname === -1)) {
+    if (ipWhitelist.indexOf(req.hostname) === -1) {
       throw common.httpError(400, 'Request from ' + req.hostname + ' ignored due to absence on IP whitelist.');
     }
 
