@@ -13,12 +13,13 @@ router.post('/', function(req, res) {
   if (!('amount' in req.body)) throw common.httpError(400, 'Missing required parameter: amount');
 
   var value = Number(req.body.amount);
+  var perAddress = value
+  var numAddresses = Math.ceil(value / 1e5) || 1;
+  if (numAddresses > 1) perAddress = 1e5;
 
-  joe.withdrawFromFaucet(value)
+  joe.charge(numAddresses, perAddress)
     .then(joe.sync)
     .done(function () {
-      debug('Charged', value);
-
       res.status(200).json({
         charged: value
       });
