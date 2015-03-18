@@ -20,13 +20,14 @@
     "url": "https://github.com/tradle/bitjoe-server-js.git"
   },
   "dependencies": {
+    "bitjoe-js": "git://github.com/tradle/bitjoe-js.git",
     "body-parser": "^1.10.1",
     "concat-stream": "^1.4.7",
     "debug": "^2.1.1",
     "express": "^4.10.7",
+    "minimist": "^1.1.0",
     "tradle-utils": "git://github.com/tradle/tradle-utils.git",
-    "bitjoe-js": "git://github.com/tradle/bitjoe-js.git",
-    "minimist": "^1.1.0"
+    "typeforce": "^1.0.0"
   },
   "keywords": [
     "bitcoin",

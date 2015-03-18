@@ -1,14 +1,21 @@
 'use strict';
 
-var assert = require('assert');
+var typeforce = require('assert');
 var express = require('express');
 var common = require('tradle-utils');
 var domain = require('domain');
 var debug = require('debug')('bitjoe-server');
 
-function createServer(bitjoe, port, callback) {
-  assert(bitjoe && typeof port === 'number', '"bitjoe" and "port" are required');
+function createServer(conf, callback) {
+  typeforce({
+    bitjoe: 'Object',
+    port: 'Number',
+    ipWhitelist: 'Array'
+  }, conf);
 
+  var bitjoe = conf.bitjoe;
+  var port = conf.port;
+  var ipWhitelist = conf.ipWhitelist;
   var app = express();
 
   app.set('joe', bitjoe);
@@ -41,8 +48,8 @@ function createServer(bitjoe, port, callback) {
   //   callback();
 
   app.use(function(req, res, next) {
-    if (req.hostname !== 'localhost' && req.hostname !== '127.0.0.1') {
-      throw common.httpError(400, 'Request from ' + req.hostname + ' ignored. Only local requests permitted');
+    if (ipWhitelist.indexOf(req.hostname === -1)) {
+      throw common.httpError(400, 'Request from ' + req.hostname + ' ignored due to absence on IP whitelist.');
     }
 
     next();
