@@ -1,6 +1,6 @@
 'use strict';
 
-var typeforce = require('assert');
+var typeforce = require('typeforce');
 var express = require('express');
 var common = require('tradle-utils');
 var domain = require('domain');
