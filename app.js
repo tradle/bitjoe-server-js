@@ -1,4 +1,4 @@
-'use strict';
+#!/usr/bin/env node
 
 var Joe = require('bitjoe-js');
 var server = require('./');
