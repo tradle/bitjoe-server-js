@@ -4,6 +4,7 @@ var typeforce = require('typeforce');
 var express = require('express');
 var common = require('tradle-utils');
 var domain = require('domain');
+var mkQueue = require('./mkQueue');
 var debug = require('debug')('bitjoe-server');
 
 function createServer(conf, callback) {
@@ -17,9 +18,11 @@ function createServer(conf, callback) {
   var port = conf.port;
   var ipWhitelist = conf.ipWhitelist;
   var app = express();
+  var queue = mkQueue(bitjoe, conf.queue);
 
   app.set('joe', bitjoe);
-  app.set('config', bitjoe.config());
+  app.set('txqueue', queue);
+  app.set('config', conf);
   if (bitjoe.isTestnet())
     app.set('json spaces', 2);
 
