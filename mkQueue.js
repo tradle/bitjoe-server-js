@@ -12,7 +12,6 @@ module.exports = function mkQueue(joe, path) {
       return joe.create()
         .data(data.data)
         .recipients(data.recipients || [])
-        .cleartext(!!(data.public || data.cleartext))
         .setPublic(!!data.public)
         .execute();
     }

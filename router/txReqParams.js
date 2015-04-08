@@ -15,8 +15,7 @@ module.exports = function getTxReqParams(req, callback) {
     var isPublic = common.isTruthy(params.public);
     var txReq = {
       data: data,
-      public: isPublic,
-      cleartext: isPublic || common.isTruthy(params.cleartext)
+      public: isPublic
     };
 
     if ('to' in params) {

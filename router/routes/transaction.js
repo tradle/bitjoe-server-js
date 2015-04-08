@@ -13,7 +13,6 @@ var getTxReqParams = require('../txReqParams');
  *   { "any": "json object" }
  * @queryParam {String} to - csv of public keys
  * @queryParam {Boolean} [public=false] - true if created resource is public
- * @queryParam {Boolean} [cleartext=false] - true if created resource is to be stored in cleartext
  * @description Creates a resource (transaction) on the tradle network
  */
 router.put('/', function(req, res) {
@@ -27,7 +26,6 @@ router.put('/', function(req, res) {
       .data(txReq.data)
       .recipients(txReq.recipients)
       .setPublic(txReq.public)
-      .cleartext(txReq.cleartext)
       .execute()
       .done(function(resp) {
         res.status(200).json(resp);
